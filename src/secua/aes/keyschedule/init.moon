@@ -28,22 +28,22 @@ return (path) ->
             rconi = rconi + 1
             for j = 1, 4
                 for i = 1, 4
-                    t[i] = bit.bxor t[i], key[(#key + i) - n]
+                    t[i] = bit.bxor t[i], expandedKey[(#expandedKey + 1) - n]
                     table.insert expandedKey, t[i]
             if #key == 256 / 8
                 for i = 1, 4
                     t[i] = sbox[t[i]]
-                    t[i] = bit.bxor t[i], key[(#key + i) - n]
+                    t[i] = bit.bxor t[i], expandedKey[(#expandedKey + 1) - n]
                     table.insert expandedKey, t[i]
             if #key == 192 / 8
                 for j = 1, 2
                     for i = 1, 4
-                        t[i] = bit.bxor t[i], key[(#key + i) - n]
+                        t[i] = bit.bxor t[i], expandedKey[(#expandedKey + 1) - n]
                         table.insert expandedKey, t[i]
             elseif #key == 256 / 8
                 for j = 1, 3
                     for i = 1, 4
-                        t[i] = bit.bxor t[i], key[(#key + i) - n]
+                        t[i] = bit.bxor t[i], expandedKey[(#expandedKey + 1) - n]
                         table.insert expandedKey, t[i]
         return expandedKey
     

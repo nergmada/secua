@@ -42,28 +42,28 @@ return function(path)
       rconi = rconi + 1
       for j = 1, 4 do
         for i = 1, 4 do
-          t[i] = bit.bxor(t[i], key[(#key + i) - n])
+          t[i] = bit.bxor(t[i], expandedKey[(#expandedKey + 1) - n])
           table.insert(expandedKey, t[i])
         end
       end
       if #key == 256 / 8 then
         for i = 1, 4 do
           t[i] = sbox[t[i]]
-          t[i] = bit.bxor(t[i], key[(#key + i) - n])
+          t[i] = bit.bxor(t[i], expandedKey[(#expandedKey + 1) - n])
           table.insert(expandedKey, t[i])
         end
       end
       if #key == 192 / 8 then
         for j = 1, 2 do
           for i = 1, 4 do
-            t[i] = bit.bxor(t[i], key[(#key + i) - n])
+            t[i] = bit.bxor(t[i], expandedKey[(#expandedKey + 1) - n])
             table.insert(expandedKey, t[i])
           end
         end
       elseif #key == 256 / 8 then
         for j = 1, 3 do
           for i = 1, 4 do
-            t[i] = bit.bxor(t[i], key[(#key + i) - n])
+            t[i] = bit.bxor(t[i], expandedKey[(#expandedKey + 1) - n])
             table.insert(expandedKey, t[i])
           end
         end

@@ -1,7 +1,7 @@
 package = "secua"
 version = "0.1.0"
 source = {
-   url = "*** please add URL for source tarball, zip or repository here ***"
+   url = "https://github.com/nergmada/secua"
 }
 description = {
    homepage = "*** please enter a project homepage ***",
