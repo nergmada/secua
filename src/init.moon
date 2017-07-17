@@ -1,2 +1,4 @@
 return (path) ->
-    aes = (require path .. 'aes')(path .. 'aes')
+    return {
+        aes: (require path .. '/aes')(path .. '/aes')
+    }
