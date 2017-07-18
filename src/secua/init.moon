@@ -1,5 +1,5 @@
 return (path) ->
     return {
-        aes: (require path .. '/aes')(path .. '/aes')
-        utils: (require path .. '/utils')(path .. '/utils')
+        aes: (require path .. '/aes')(path)
+        utils: (require path .. '/utils')(path)
     }
