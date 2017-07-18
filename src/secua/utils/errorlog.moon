@@ -1,8 +1,8 @@
 return (data, errorlevel) ->
     switch errorlevel
         when 1
-            print 'Error: ' .. data
+            print 'Error@Secua: ' .. data
         when 2
-            print 'Warning: ' .. data
+            print 'Warning@Secua: ' .. data
         when 3
-            print 'Message: ' .. data
+            print 'Message@Secua: ' .. data
