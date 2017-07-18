@@ -1,5 +1,6 @@
 return (path) ->
     return {
-        log: require (path .. '/errorlog')
-        keycomparator: (require (path .. '/keycomparator'))(path)
+        keycomparator: (require (path .. '/utils/keycomparator'))(path)
+        log: require (path .. '/utils/errorlog')
+        bit: require (path .. '/utils/bit')
     }

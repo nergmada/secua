@@ -1,5 +1,5 @@
 return (path) ->
-    log = (require path .. '/errorlog')
+    log = (require path .. '/utils/errorlog')
     return (keyA, keyB) ->
         if (not keyA) or (not keyB)
             log 'No value supplied for at least one parameter', 1

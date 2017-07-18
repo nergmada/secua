@@ -1,5 +1,5 @@
 return (path) ->
     return {
-        keyschedule: (require path .. '/keyschedule')(path .. '/keyschedule')
+        keyschedule: (require path .. '/aes/keyschedule')(path)
 
     }
