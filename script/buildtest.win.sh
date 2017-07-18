@@ -1,3 +1,3 @@
 sh ./script/build.win.sh
-cd ./secua-build
+cd ./build
 luajit init_spec.lua
