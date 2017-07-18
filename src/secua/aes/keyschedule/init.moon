@@ -22,7 +22,7 @@ return (path) ->
         for i = 1, #key
             expandedKey[i] = key[i]
         rconi = 1
-        while #expandedKey != b
+        while #expandedKey < b
             t = [byte for byte in *expandedKey[#expandedKey - 3,]]
             t = keyScheduleCore t, rconi
             rconi = rconi + 1
@@ -45,5 +45,5 @@ return (path) ->
                     for i = 1, 4
                         t[i] = bit.bxor t[i], expandedKey[(#expandedKey + 1) - n]
                         table.insert expandedKey, t[i]
-        return expandedKey
+        return [byte for byte in *expandedKey[1, b]]
     
