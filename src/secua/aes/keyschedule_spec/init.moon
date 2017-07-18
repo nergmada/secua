@@ -12,5 +12,5 @@ return () ->
         keyscheduleresult = keyschedule inputkey
 
         resultA = keycomparator outputkey, keyscheduleresult
-        print '- - comparing expanded key ' .. keytestno .. ' to expected: ' .. tostring(resultA == true)
+        print '- - comparing expanded key ' .. keytestno .. ' to expected (' .. #inputkey * 8 .. ' bit): ' .. tostring(resultA == true)
     
