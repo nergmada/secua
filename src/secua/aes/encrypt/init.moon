@@ -1,3 +1,4 @@
 return (path) ->
-    steps = require path .. '/aes/steps'
-    return (block, key) ->
+    return {
+        bit256: (require path .. '/aes/encrypt/bit256')(path)
+    }
