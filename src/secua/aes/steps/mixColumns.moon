@@ -9,7 +9,7 @@ return (path) ->
         result = {}
         for i = 0, 12, 4
             result[i + 1] = bit.bxor gf[2][state[i + 1]], gf[3][state[i + 2]], state[i + 3], state[i + 4]
-            result[i + 2] = bit.bxor state[i + 1], gf[2][state[i + 2]], gf[3][state[i + 3]], state[i = 4]
+            result[i + 2] = bit.bxor state[i + 1], gf[2][state[i + 2]], gf[3][state[i + 3]], state[i + 4]
             result[i + 3] = bit.bxor state[i + 1], state[i + 2], gf[2][state[i + 3]], gf[3][state[i + 4]]
             result[i + 4] = bit.bxor gf[3][state[i + 1]], state[i + 2], state[i + 3], gf[3][state[i + 4]]
         return result

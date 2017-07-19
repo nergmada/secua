@@ -1,8 +1,11 @@
 describe 'Key Comparator Tests', () ->
     secua = nil
-    
+
     setup () ->
         secua = (require 'secua')('secua')
+    
+    before_each () ->
+        stub _G, 'print'
 
     it 'compares two matching string keys', () ->
         assert.is_true(secua.utils.keycomparator '9sei38s93', '9sei38s93')
@@ -18,3 +21,4 @@ describe 'Key Comparator Tests', () ->
     
     it 'does not compare invalid types', () ->
         assert.is_false(secua.utils.keycomparator '434vrf', true)
+        assert.stub(print).is.called

@@ -3,5 +3,6 @@ return {
         lpath: '?.lua;?/?.lua;?/init.lua'
         verbose: true
         output: 'utfTerminal'
+        ['defer-print']: true
     }
 }
