@@ -6,6 +6,7 @@ return (path) ->
         if (not state) or (type state) != 'table'
             log 'State is non-existent or not a table', 1
             return nil
+        
         if #state != 16
             log 'State does not match 128 bit block size', 2
         

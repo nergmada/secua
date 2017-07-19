@@ -21,3 +21,8 @@ describe 'Sub Bytes Tests', ->
         subBytes = secua.aes.steps.subBytes
         assert.is_nil(subBytes nil)
         assert.stub(print).was.called!
+    
+    it 'rejects a non-table state', ->
+        subBytes = secua.aes.steps.subBytes
+        assert.is_nil(subBytes 32)
+        assert.stub(print).was.called!
