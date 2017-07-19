@@ -6,4 +6,5 @@ return (path) ->
         shiftRows: (require path .. '/aes/steps/shiftRows')(path)
         invSubBytes: (require path .. '/aes/steps/invSubBytes')(path)
         invMixColumns: (require path .. '/aes/steps/invMixColumns')(path)
+        invShiftRows: (require path .. '/aes/steps/invShiftRows')(path)
     }
