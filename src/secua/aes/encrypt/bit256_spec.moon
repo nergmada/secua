@@ -21,4 +21,37 @@ describe 'AES 256 bit block encryption', ->
         bit256, keyschedule = secua.aes.encrypt.bit256, secua.aes.keyschedule
         encrypteddata = bit256 inputdata, (keyschedule inputkey)
         assert.are.same expected, encrypteddata
-    
+    it 'rejects a nil input block', ->
+        inputkey = { 
+            0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF, 0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF,
+            0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF, 0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF 
+        }
+        bit256, keyschedule = secua.aes.encrypt.bit256, secua.aes.keyschedule
+        
+        assert.is_nil(bit256 nil, (keyschedule inputkey))
+        assert.stub(print).was.called!
+    it 'rejects a nil input key', ->
+        inputdata = {
+            0xFE, 0xDC, 0xBA, 0x98, 0x76, 0x54, 0x32, 0x10, 0xFE, 0xDC, 0xBA, 0x98, 0x76, 0x54, 0x32, 0x10
+        }
+        bit256, keyschedule = secua.aes.encrypt.bit256, secua.aes.keyschedule
+        
+        assert.is_nil(bit256 inputdata, nil)
+        assert.stub(print).was.called!
+    it 'rejects a nil input for both block and key', ->
+        bit256, keyschedule = secua.aes.encrypt.bit256, secua.aes.keyschedule
+        
+        assert.is_nil(bit256 nil, nil)
+        assert.stub(print).was.called!
+    it 'rejects an invalid block size', ->
+        inputkey = { 
+            0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF, 0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF,
+            0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF, 0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF 
+        }
+        inputdata = {
+            0x76, 0x54, 0x32, 0x10, 0xFE, 0xDC, 0xBA, 0x98, 0x76, 0x54, 0x32, 0x10
+        }
+        bit256, keyschedule = secua.aes.encrypt.bit256, secua.aes.keyschedule
+        
+        assert.is_nil(bit256 inputdata, (keyschedule inputkey))
+        assert.stub(print).was.called!
