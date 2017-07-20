@@ -9,6 +9,6 @@ return (path) ->
             log 'Cannot hexBytify, argument is not a string', 1
             return nil
         result = {}
-        for hexByte in hexstr:gmatch('..')
+        for hexByte in hexstr\gmatch('..')
             table.insert result, tonumber hexByte, 16
         return result

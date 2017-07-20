@@ -3,6 +3,7 @@ return (path) ->
     stringify = (require path .. '/utils/stringify')(path)
     bytify = (require path .. '/utils/bytify')(path)
     hexify = (require path .. '/utils/hexify')(path)
+    hexBytify = (require path .. '/utils/hexBytify')(path)
 
     return (cipherMode) ->
         if (not cipherMode) or (type cipherMode) != 'table'
@@ -15,9 +16,13 @@ return (path) ->
             when 'cbc'
                 return { 
                     stringEncrypt: (str, key, iv) ->
-                        hexify cipherMode.encrypt (bytify str), (bytify key), iv
+                        hexify cipherMode.encrypt (bytify str), (bytify key), (bytify iv)
                     stringDecrypt: (str, key, iv) ->
-                        hexify cipherMode.decrypt (bytify str), (bytify key), iv
+                        stringify cipherMode.decrypt (bytify str), (bytify key), (bytify iv)
+                    hexEncrypt: (str, key, iv) ->
+                        hexify cipherMode.encrypt (hexBytify str), (hexBytify key), (hexBytify iv)
+                    hexDecrypt: (str, key, iv) ->
+                        hexify cipherMode.decrypt (hexBytify str), (hexBytify key), (hexBytify iv)
                     encrypt: cipherMode.encrypt
                     decrypt: cipherMode.decrypt
                 }
@@ -26,11 +31,11 @@ return (path) ->
                     stringEncrypt: (str, key) ->
                         hexify cipherMode.encrypt (bytify str), (bytify key)
                     stringDecrypt: (str, key) ->
-                        hexify cipherMode.decrypt (bytify str), (bytify key)
+                        stringify cipherMode.decrypt (bytify str), (bytify key)
                     hexEncrypt: (str, key) ->
-                        hexify cipherMode.encrypt (bytify str), (bytify key)
+                        hexify cipherMode.encrypt (hexBytify str), (hexBytify key)
                     hexDecrypt: (str, key) ->
-                        hexify cipherMode.decrypt (bytify str), (bytify key)
+                        hexify cipherMode.decrypt (hexBytify str), (hexBytify key)
                     
                     encrypt: cipherMode.encrypt
                     decrypt: cipherMode.decrypt

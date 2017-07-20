@@ -13,4 +13,4 @@ describe 'AES Block Cipher Mode wrapper encryption', ->
             expected = {
                 0x84, 0x17, 0x07, 0x63, 0x46, 0x1D, 0x7C, 0xFD, 0x7D, 0x56, 0xEF, 0xCD, 0xA8, 0x7D, 0x59, 0x3B
             }
-            assert.are.same expected, ecbCipher.stringEncrypt 'hello world', 'losingmyreligion'
+            assert.are.same '84170763461D7CFD7D56EFCDA87D593B', ecbCipher.stringEncrypt 'hello world', 'losingmyreligion'
