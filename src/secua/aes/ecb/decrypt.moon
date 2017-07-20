@@ -7,7 +7,7 @@ return (path) ->
         if (not data) or (not key) or (type data) != 'table' or (type key) != 'table'
             log 'No data or no key has been provided, or one of these is not in a table of bytes', 1
             return nil
-        if (#key == 16) and (#key == 24) and (#key == 32)
+        if (#key != 16) and (#key != 24) and (#key != 32)
             log 'Key is not 128, 192 or 256 bits long, cannot encrypt', 1
             return nil
         
