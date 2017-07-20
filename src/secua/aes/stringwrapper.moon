@@ -14,18 +14,18 @@ return (path) ->
             when 'cbc'
                 return { 
                     stringEncrypt: (str, key, iv) ->
-                        stringify cipherMode.encrypt (bytify str), key, iv
+                        stringify cipherMode.encrypt (bytify str), (bytify key), iv
                     stringDecrypt: (str, key, iv) ->
-                        stringify cipherMode.decrypt (bytify str), key, iv
+                        stringify cipherMode.decrypt (bytify str), (bytify key), iv
                     encrypt: cipherMode.encrypt
                     decrypt: cipherMode.decrypt
                 }
             when 'ecb'
                 return { 
                     stringEncrypt: (str, key) ->
-                        stringify cipherMode.encrypt (bytify str), key
+                        stringify cipherMode.encrypt (bytify str), (bytify key)
                     stringDecrypt: (str, key) ->
-                        stringify cipherMode.decrypt (bytify str), key
+                        stringify cipherMode.decrypt (bytify str), (bytify key)
                     encrypt: cipherMode.encrypt
                     decrypt: cipherMode.decrypt
                 }
