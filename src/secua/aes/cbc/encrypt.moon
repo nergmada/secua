@@ -1,8 +1,10 @@
 return (path) ->
-    log = require path .. '/utils/errorlog'
     keyschedule = (require path .. '/aes/keyschedule')(path)
     encrypt = (require path .. '/aes/encrypt')(path)
+    
+    log = require path .. '/utils/errorlog'
     bit = (require path .. '/utils/bit')
+    pcks7 = (require path .. '/utils/padding/pcks7')(path)
 
     return (data, key, iv) ->
         --Error checking code, make sure we don't get passed junk
@@ -18,9 +20,7 @@ return (path) ->
         --Auto padding code
         if (#data % 16 != 0)
             log 'The data is not a multiple of 128 bits, we will automatically pad this according to PKS7', 2
-            required = 16 - (#data % 16)
-            for i = 1, required
-                table.insert data, required
+            data = pcks7.pad data, 16
         --expand key
         expandedkey = keyschedule key
         -- create ciphertext table

@@ -1,8 +1,10 @@
 return (path) ->
-    log = require path .. '/utils/errorlog'
     keyschedule = (require path .. '/aes/keyschedule')(path)
     decrypt = (require path .. '/aes/decrypt')(path)
+    
+    log = require path .. '/utils/errorlog'
     bit = (require path .. '/utils/bit')
+    pcks7 = (require path .. '/utils/padding/pcks7')(path)
 
     return (data, key, iv) ->
         --Error checking code, make sure we don't get passed junk
@@ -45,4 +47,4 @@ return (path) ->
             --add plainblock to result
             for byte in *plainblock
                 table.insert result, byte
-        return result
+        return pcks7.depad result
