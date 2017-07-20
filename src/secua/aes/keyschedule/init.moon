@@ -1,7 +1,7 @@
 return (path) ->
     bit = require path .. '/utils/bit'
-    sbox = require path .. '/aes/keyschedule/sbox'
-    rcon = require path .. '/aes/keyschedule/rcon'
+    sbox = require path .. '/aes/precomputation/sbox'
+    rcon = require path .. '/aes/precomputation/rcon'
     keyScheduleCore = (input, iteration) ->
         output = {}
         output[1], output[2], output[3], output[4] = sbox[input[2]], sbox[input[3]], sbox[input[4]], sbox[input[1]]
