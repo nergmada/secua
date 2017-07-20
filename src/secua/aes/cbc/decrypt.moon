@@ -1,7 +1,7 @@
 return (path) ->
     log = require path .. '/utils/errorlog'
     keyschedule = (require path .. '/aes/keyschedule')(path)
-    encrypt = (require path .. '/aes/encrypt')(path)
+    decrypt = (require path .. '/aes/encrypt')(path)
     bit = (require path .. '/utils/bit')
 
     return (data, key, iv) ->
@@ -15,34 +15,33 @@ return (path) ->
         if #iv != 16
             log 'The initialisation vector is not correct size, should match block size (128 bits)', 1
             return nil
-        --Auto padding code
         if (#data % 16 != 0)
-            log 'The data is not a multiple of 128 bits, we will automatically pad this according to PKS7', 2
-            required = 16 - (#data % 16)
-            for i = 1, required
-                table.insert data, required
+            log 'The data is not a multiple of 128 bits, this is probably not a cipher text encrypted with CBC', 1
+            return nil
         --expand key
         expandedkey = keyschedule key
-        -- create ciphertext table
+        -- create plaintext table
         result = {}
-        --set cipherblock to initialisation Vector
-        cipherblock = iv
+        -- create previous with iv
+        prev = iv
         --iterate through each block
         for blockNo = 1, (#data / 16)
             --break into block
             block = [byte for byte in *data[((blockNo - 1) * 16) + 1, ((blockNo - 1) * 16) + 16]]
-            --XOR with previous cipherblock/IV
-            for i = 1, 16
-                block[i] = bit.bxor block[i], cipherblock[i]
-            --encrypt according to keysize
+            --decrypt according to keysize
             switch #key
                 when 16
-                    cipherblock = encrypt.bit128 block, expandedkey
+                    plainblock = decrypt.bit128 block, expandedkey
                 when 24
-                    cipherblock = encrypt.bit192 block, expandedkey
+                    plainblock = decrypt.bit192 block, expandedkey
                 when 32
-                    cipherblock = encrypt.bit256 block, expandedkey
-            --add cipherblock to result
-            for byte in *cipherblock
+                    plainblock = decrypt.bit256 block, expandedkey
+            --XOR against the previous cipherblock or the IV
+            for i = 1, 16
+                plainblock[i] = bit.bxor plainblock[i], prev[i]
+            --Set previous to this current cipher block
+            prev = block
+            --add plainblock to result
+            for byte in *plainblock
                 table.insert result, byte
         return result
