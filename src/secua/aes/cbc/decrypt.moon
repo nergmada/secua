@@ -1,7 +1,7 @@
 return (path) ->
     log = require path .. '/utils/errorlog'
     keyschedule = (require path .. '/aes/keyschedule')(path)
-    decrypt = (require path .. '/aes/encrypt')(path)
+    decrypt = (require path .. '/aes/decrypt')(path)
     bit = (require path .. '/utils/bit')
 
     return (data, key, iv) ->
@@ -28,6 +28,7 @@ return (path) ->
         for blockNo = 1, (#data / 16)
             --break into block
             block = [byte for byte in *data[((blockNo - 1) * 16) + 1, ((blockNo - 1) * 16) + 16]]
+            plainblock = {}
             --decrypt according to keysize
             switch #key
                 when 16
