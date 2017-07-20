@@ -5,4 +5,5 @@ return (path) ->
         bit: require (path .. '/utils/bit')
         bytify: (require (path .. '/utils/bytify'))(path)
         stringify: (require (path .. '/utils/stringify'))(path)
+        padding: (require path .. '/utils/padding')(path)
     }
