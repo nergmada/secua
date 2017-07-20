@@ -6,7 +6,7 @@ return (path) ->
             return nil
         
         if (type bytes) != 'table'
-            log 'Cannot bytify, argument is not a string', 1
+            log 'Cannot stringify, argument is not a string', 1
             return nil
         result = ''
         for byte in *bytes

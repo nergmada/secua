@@ -6,4 +6,5 @@ return (path) ->
         bytify: (require (path .. '/utils/bytify'))(path)
         stringify: (require (path .. '/utils/stringify'))(path)
         padding: (require path .. '/utils/padding')(path)
+        hexify: (require path .. '/utils/hexify')(path)
     }

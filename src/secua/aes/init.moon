@@ -6,5 +6,6 @@ return (path) ->
         decrypt: (require path .. '/aes/decrypt')(path)
         ecb: (require path .. '/aes/ecb')(path)
         cbc: (require path .. '/aes/cbc')(path)
+        stringEncryption: (require path .. '/aes/stringwrapper')(path)
         otherciphers: nil
     }
