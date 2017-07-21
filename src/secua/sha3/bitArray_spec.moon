@@ -1,4 +1,4 @@
-describe 'Set Bit Method tests', ->
+describe 'Bit Array tests', ->
     secua = nil
     
     setup ->
