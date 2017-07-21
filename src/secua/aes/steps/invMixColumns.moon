@@ -1,5 +1,5 @@
 return (path) ->
-    bit = require path .. '/utils/bit'
+    bit = (require path .. '/utils/bit')(path)
     log = require path .. '/utils/errorlog'
     gf = require path .. '/aes/precomputation/gfield'
     return (state) ->

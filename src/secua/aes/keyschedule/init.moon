@@ -1,5 +1,5 @@
 return (path) ->
-    bit = require path .. '/utils/bit'
+    bit = (require path .. '/utils/bit')(path)
     sbox = require path .. '/aes/precomputation/sbox'
     rcon = require path .. '/aes/precomputation/rcon'
     keyScheduleCore = (input, iteration) ->
