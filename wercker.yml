@@ -1,0 +1,33 @@
+box: adamfgreen/moonscript-love2d:0.6
+build:
+    steps:
+        - script:
+            name: Run buildtest
+            code: sh ./script/buildtest.sh
+deploy:
+    steps:
+        - script:
+            name: generate deploy time
+            code: export DEPLOY_TIME="$(date +%Y-%m-%d.%H.%M.%S)"
+        - script:
+            name: Run buildtest
+            code: sh ./script/buildtest.sh
+        - script:
+            name: Secua library zip
+            code: |
+                sh ./script/generate.sh
+        - script:
+            name: Get App version and build name
+            code: |
+                export APP_VERSION="$(sh ./VERSION)"
+                export BUILD_NAME_WIN="secua-"$(sh ./VERSION)".zip"
+                export BUILD_NAME_LINUX="secua-"$(sh ./VERSION)".tar.gz"
+        - github-create-release:
+            token: $GITHUB_TOKEN
+            tag: $APP_VERSION
+        - github-upload-asset:
+            token: $GITHUB_TOKEN
+            file: $BUILD_NAME_WIN
+        - github-upload-asset:
+            token: $GITHUB_TOKEN
+            file: $BUILD_NAME_LINUX
