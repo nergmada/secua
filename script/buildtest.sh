@@ -1,3 +1,3 @@
-sh ./script/build.win.sh
+sh ./script/build.sh
 cd ./build
 busted .
