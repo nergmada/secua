@@ -2,6 +2,8 @@
 
 *a pure lua 5.2+ cryptography library, with support for luaJIT*
 
+[![wercker status](https://app.wercker.com/status/932f418e3c5c7edaa09983d6b0c43ba0/m/master "wercker status")](https://app.wercker.com/project/byKey/932f418e3c5c7edaa09983d6b0c43ba0)
+
 Secua is library written in moonscript that compiles directly to Lua 5.2 and 
 above. It also supports LuaJIT for that added speed boost. Secua is designed
 to be quick and easy to deploy, without external dependencies or the hard to distribute
