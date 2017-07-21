@@ -5,15 +5,11 @@ return (path) ->
         
         setBit = (index, value) ->
             byteIndex = math.ceil index / 8
-            bitIndex = index % 8 
-            if bitIndex == 0 then bitIndex = 8
-            bytes[byteIndex] = bit.setBit bytes[byteIndex], bitIndex, value
+            bytes[byteIndex] = bit.setBit bytes[byteIndex], ((index - 1) % 8) + 1, value
         
         getBit = (index) ->
             byteIndex = math.ceil index / 8
-            bitIndex = index % 8 
-            if bitIndex == 0 then bitIndex = 8
-            return bit.getBit bytes[byteIndex], bitIndex
+            return bit.getBit bytes[byteIndex], ((index - 1) % 8) + 1
         
         getBytes = () ->
             return [byte for byte in *bytes]

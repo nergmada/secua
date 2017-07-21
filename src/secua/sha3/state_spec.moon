@@ -5,7 +5,7 @@ describe 'State tests', ->
         secua = (require 'secua')('secua')
     
     before_each ->
-        --stub _G, "print"
+        stub _G, "print"
     
     it 'correctly loads and returns a provided byte array', ->
         input = { 
