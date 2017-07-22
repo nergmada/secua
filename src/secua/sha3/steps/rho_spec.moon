@@ -1,11 +1,11 @@
-describe 'State tests', ->
+describe 'Rho Step tests', ->
     secua = nil
     
     setup ->
         secua = (require 'secua')('secua')
     
     before_each ->
-        --stub _G, "print"
+        stub _G, "print"
     
     it 'correctly rotates each lane', ->
         input = {
