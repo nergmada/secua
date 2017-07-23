@@ -23,7 +23,7 @@ LuaRocks package.
 
 ## Available Tools
 
-- AES
+- [AES](/secua/api/aes)
     - 128 bit key
     - 192 bit key
     - 256 bit key
@@ -69,7 +69,7 @@ print(cipherHex)
 ```
 
 For more detailed exploration the API, cryptography and it's usage, please see the 
-[API page](/api)
+[API page](/secua/api)
 
 ## Motivation
 

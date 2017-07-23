@@ -35,7 +35,7 @@ without using the same part more than once. For this reason, the key is expanded
 a key schedule algorithm. 
 
 For more information on the key schedule algorithm and it's implementation
-see the keyschedule page under AES.
+[see the keyschedule page](/secua/api/aes/keyschedule) under AES.
 
 ## Steps 
 the steps that make up each round in the AES are fully documented in 
@@ -48,7 +48,7 @@ AES is designed to be applied to single blocks of data. Hence the AES
 encrypt and decrypt methods only accept a fixed size block and key, and
 do not perform any padding of data. 
 
-For more information on these, please see the respective encrypt and decrypt 
+For more information on these, please see the respective [encrypt](/secua/api/aes/encrypt) and [decrypt](/secua/api/aes/decrypt) 
 pages.
 
 But the kind of data we traditionally deal with, for example messages, do 
@@ -65,7 +65,7 @@ then breaks the data into sequential blocks, which it encrypts and returns as
 the cipher text. 
 
 For more information on this mode, it's implementation in Secua and it's usage, see
-the ECB article 
+[the ECB article](/secua/api/aes/ecb) 
 
 ### Cipher Text Chaining 
 ECB, however, is not the only nor best way to encrypt data. Cipher Block Chaining 
@@ -73,7 +73,7 @@ involves not only encrypting data but also XOR the next block against the previo
 encrypted block. 
 
 For more information on this mode, it's implementation in secua and it's usage see 
-the CBC article.
+[the CBC article](/secua/api/aes/cbc).
 
 ### Other Modes 
 Secua exposes the algorithm and it's underlying functions at various levels 

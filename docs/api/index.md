@@ -7,10 +7,10 @@ secua.utils
 ```
 
 ## secua.aes
-`secua.aes` contains the necessary functions to encrypt and decrypt binary data
+[`secua.aes`](/secua/api/aes) contains the necessary functions to encrypt and decrypt binary data
 according to the AES-128, AES-192 and AES-256 Symmetric Encryption Standard.
 
-For more information on it, please see the main AES page.
+For more information on it, please see [the main AES page](/secua/api/aes).
 
 ## secua.utils
 `secua.utils` contains helper functions which don't fit directly into other
