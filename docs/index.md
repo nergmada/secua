@@ -68,6 +68,9 @@ print(cipherHex)
 --8E10C7187151EA93C6A0587913E91F731C2C1EDD74DD6182734C9576538917B65E4CF71BAA7483AFE01B40DC144AFA157416B80EA069E833839071189BA61310
 ```
 
+For more detailed exploration the API, cryptography and it's usage, please see the 
+[API page](/api)
+
 ## Motivation
 
 I built Secua as an experimentation with building cryptographic functions. As I will make clear here,
