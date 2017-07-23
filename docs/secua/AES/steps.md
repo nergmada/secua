@@ -160,3 +160,13 @@ local state = {
 local shiftedRowState = secua.aes.steps.mixColumns(state)
 
 ```
+
+## secua.aes.steps.subBytes(state) and .invSubBytes(state)
+SubBytes and invSubBytes makes use of two lookup tables to find out how to
+substitute and reverse the substitution of individual bytes in the state 
+
+These lookup tables can be found in the precomputation folder of the `secua/aes` 
+folder, but are not directly exposed in the API. 
+
+This is in accordance with the S-Box used in the AES standard. I can't explain how the
+S-Box is derived, so here's the [wikipedia](https://en.wikipedia.org/wiki/Rijndael_S-box) article on it
