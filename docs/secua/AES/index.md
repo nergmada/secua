@@ -13,7 +13,7 @@ secua.aes.cbc
 secua.aes.decrypt
 secua.aes.ecb
 secua.aes.encrypt
-secua.aes.keyschedule
+secua.aes.keyschedule(key)
 secua.aes.steps
 ```
 ## secua.aes.cbc
@@ -34,7 +34,7 @@ the encrypt table contains a set of functions for encrypting a single block, usi
 or 256 bit key.
 For more information on its implementation and use, please see the aes.encrypt page
 
-## secua.aes.keyschedule
+## secua.aes.keyschedule(key)
 `secua.aes.keyschedule` is the function all of the AES cryptographic functions here use to 'expand' their
 given key. For more information on its implementation, purpose and usage, please see the keyschedule page
 

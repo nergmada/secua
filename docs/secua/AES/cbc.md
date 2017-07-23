@@ -1,5 +1,5 @@
 # secua.aes.cbc (AES CBC Mode)
-secua.aes.cbc is the Secua implementation of Cipher Block Chaining
+`secua.aes.cbc` is the Secua implementation of Cipher Block Chaining
 mode of operation. it contains two functions:
 ```lua
 secua.aes.cbc.encrypt(data, key, iv)
@@ -94,8 +94,12 @@ for encrypting
 
 ```lua
 local secua = require('path/to/secua')('path/to/secua')
---Our data as single bytes
-local data = { 0xad, 0x2c, 0xb6, 0x1c, 0x75 }
+--Our data as single bytes, NOTE: the decrypt method will not accept
+-- data that is not a multiple of the block size. 
+local data = { 
+    0xad, 0x2c, 0xb6, 0x1c, 0x75, 0xac, 0x0a, 0x12, 
+    0x21, 0x43, 0xbd, 0x1a, 0x21, 0x32, 0x01, 0xad
+}
 --Our key, 16 bytes long, or 128 bits
 local key = { 
     0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
@@ -125,7 +129,8 @@ local hexify = secua.utils.hexify
 
 --Our completely indecipherable data NOTE: the encrypted data here is not an encryption of the text in the 
 --encrypted example. It's just some random hexidecimal I entered
-local data = hexBytify('0390bac90ae809deb190cf09de0a90b9c9se8237276a21b')
+--This hexidecimal data is a multiple of 128 bits, this is necessary or it won't be decrypted
+local data = hexBytify('0390bac90ae809deb190cf09de0a90b9c9se8237276a21b0acde426d7ab6cd5e')
 --Our secret key a hexidecimal string which is 32 characters long and can be turned into 16 bytes
 local key = hexBytify('ab0fcd03eb12fc11aa437982ecba1bf2')
 --Our initialisation vector, again a 32 character hexidecimal string which equates to 16 bytes
@@ -147,3 +152,5 @@ local decrypteddata = stringify(secua.aes.cbc.decrypt(data, key, iv))
 - the stringify and bytify functions appear to be cross platform compatible
     but whilst writing them I found a weird footnote in the lua library saying that
     not all systems will return the same character numbers when evaluating `string.byte()`
+- the decrypt method will not accept data that is not a multiple of the block size. Auto padding
+    only happens during encryption and not decryption
