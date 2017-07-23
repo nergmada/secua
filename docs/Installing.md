@@ -61,3 +61,4 @@ local completelyuselesscryptolibrary = require('path/to/secua')('path/to/secua')
 ```
 ...well... that just hurts.
 
+For more info on usage, see the [API page](/secua/api)
