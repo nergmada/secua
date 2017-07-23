@@ -7,7 +7,7 @@ above. It also supports LuaJIT for that added speed boost. Secua is designed
 to be quick and easy to deploy, without external dependencies or the hard to distribute
 LuaRocks package.
 
-## Advantages
+### Advantages
 
 - Zero external dependencies or libraries
 - runs on 5.2, 5.3 and LuaJIT
@@ -15,15 +15,15 @@ LuaRocks package.
 - Totally exposed code, so you can use as much or as little as you like
 - Built with moonscript, because it's awesome
 
-## Disadvantages
+### Disadvantages
 - Developed by me, not a team of expert cryptographers
 - No external dependencies or libraries, so not very fast
 - A weird design because it's designed to run out the box
 - Built with moonscript, because it's powerful but bewildering
 
-# Available Tools
+## Available Tools
 
-- AES
+- [AES](/secua/api/aes)
     - 128 bit key
     - 192 bit key
     - 256 bit key
@@ -41,12 +41,16 @@ LuaRocks package.
         - PCKS 7
         - More planned
 
-# Getting Started
+## Getting Started
+
+To use secua, either download a .zip or .tar.gz file from our releases, or clone the repo and run the build.sh moonscript.
+Secua is platform independent, and so using the release files should not be any worse.
+
 ```lua
 --Not a typo, you do have to provide the path twice
 local secua = require('path/to/secua')('path/to/secua')
 -- data can be any length, but will be padded
-local data = 'it\'s the ship that made the Kessel run in less than 12 parsecs'
+local data = 'it is the ship that made the Kessel run in less than 12 parsecs'
 --key should be either 128, 192 or 256 bits (1 char = 1 byte, 32 chars * 8 bits = 256bits)
 local key = 'except a parsec measures lengths'
 --Load ECB encryption mode for AES and bytify function
@@ -61,5 +65,28 @@ print(cipherHex)
 
 --What it should print:
 --Warning@Secua: The data is not a multiple of 128 bits, we will automatically pad this according to PKS7
---5B9CCA72AF19515DE92DCC2034D162DC6107AC6D8DD63D442CBB7E18A3B19FD3282D82DD553564514BB358F4A64D17ECF602D51A7929D1B872159FAF272625C4
+--8E10C7187151EA93C6A0587913E91F731C2C1EDD74DD6182734C9576538917B65E4CF71BAA7483AFE01B40DC144AFA157416B80EA069E833839071189BA61310
 ```
+
+For more detailed exploration the API, cryptography and it's usage, please see the 
+[API page](/secua/api)
+
+## Motivation
+
+I built Secua as an experimentation with building cryptographic functions. As I will make clear here,
+I do not condone or recommend using Secua in applications requiring strong security, or any security for that
+matter. The MIT license under which this software is distributed specifically states
+
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+
+Long story short, I am not responsible for it's quality.
+
+That said, I fully intend for Secua to be as useful as a real cryptographic library. 
+I don't like bad documentation, I don't like the Lua community's lacklustre attitude to
+making packages and libraries hard to include in projects and worse yet, the expectation that
+people have an intimate knowledge of how to use their libraries.
+
+If at any point you are unsure about what you find in these documents, please open an issue
+and tag @nergmada. 
