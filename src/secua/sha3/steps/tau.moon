@@ -10,4 +10,4 @@ return (path) ->
             newValue = ((not sv) and rcv) or (sv and (not rcv))
             state.setBit 1, 1, z, newValue
         return state 
-        
+
