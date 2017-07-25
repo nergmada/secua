@@ -20,6 +20,7 @@ return (path) ->
         -- for each block of the message
         for i = 0, n - 1
             --get the submessage
+            print "start: " .. (i * byteRate) + 1 .. " end: " .. ((i + 1) * byteRate) 
             submessage = [byte for byte in *paddedmessage[(i * byteRate) + 1, ((i + 1) * byteRate)]]
             --attach the zero bytes to the end to make it 1600 bits
             for byte in *capBytes
