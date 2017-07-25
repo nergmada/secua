@@ -1,13 +1,13 @@
 return (path) ->
+    stateBuilder = (require path .. '/sha3/state')(path)
     rclookup = require(path .. '/sha3/steps/rclookup')
+    
+    bit = (require path .. '/utils/bit')(path)
+    
     return (state, index) ->
-        rc = [false for i = 1, state.width]
-        for j = 0, math.log(state.width, 2)
-            rc[math.pow(2, j)] = rclookup[(j + (7 * index)) % 255]
-        for z = 1, state.width
-            sv = state.getBit 1, 1, z
-            rcv = rc[z]
-            newValue = ((not sv) and rcv) or (sv and (not rcv))
-            state.setBit 1, 1, z, newValue
-        return state 
+        newBytes = rclookup[index]
+        stateBytes = state.getBytes!
+        for i = 1, #newBytes
+            stateBytes[i] = bit.bxor stateBytes[i], newBytes[(#newBytes - i) + 1]
+        return stateBuilder stateBytes
 

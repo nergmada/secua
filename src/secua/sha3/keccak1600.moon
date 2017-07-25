@@ -11,6 +11,7 @@ return (path) ->
 
     round = (state, index) ->
         return (tau (chi (pi (rho (theta state)))), index)
+    
     return (input) ->
         if #input != 200
             log 'the provide input is not 1600 bits long', 1
