@@ -11,41 +11,45 @@ return (path) ->
         c = {}
         ----Plane creation
         for x = 1, 5
-            c[x] = state[x][1]
-            for y = 2, 5
-                for z = 1, #state[x][y]
-                    c[x] = bit.bxor c[x][z], state[x][y][z]
+            c[x] = {}
+            for z = 1, 8
+                c[x][z] = bit.bxor state[x][1][z], state[x][2][z], state[x][3][z], state[x][4][z], state[x][5][z]
+
         ----Plane crushing
         d = {}
-        for x = 1, 5
-            d[x] = {}
-            a = c[((x - 2) % 5) + 1]
-            b = rot(c[((x - 1) % 5)], 1)
+        for x = 0, 4
+            d[x + 1] = {}
+            a = c[((x - 1) % 5) + 1]
+            b = rot(c[((x + 1) % 5) + 1], 1)
             for i = 1, #b
-                d[x][i] = bit.bxor a[i], b[i]
+                d[x + 1][i] = bit.bxor a[i], b[i]
         ----Merge with state
         for x = 1, 5
             for y = 1, 5
                 for z = 1, #d[x]
-                    state[x][y] = bit.bxor state[x][y][z], d[x][z]
+                    state[x][y][z] = bit.bxor state[x][y][z], d[x][z]
         --Rho & Pi steps
         b = {}
         for x = 0, 4
             b[x + 1] = {}
             for y = 0, 4
-                b[x + 1][(((2 * x) * (3 * y)) % 5) + 1] = rot(state[(x + 1) % 5][y + 1], rlookup[x][y])
+                b[x + 1][(((2 * x) + (3 * y)) % 5) + 1] = rot(state[x + 1][y + 1], rlookup[x][y])
+        
         --Chi step
         for x = 0, 4
             for y = 0, 4
                 p = b[x + 1][y + 1]
-                q = b[((x + 1) % 5) + 1][((y + 1) % 5) + 1]
-                r = b[((x + 2) % 5) + 1][((y + 2) % 5) + 1]
+                
+                q = b[((x + 1) % 5) + 1][y + 1]
+                r = b[((x + 2) % 5) + 1][y + 1]
                 for z = 1, #p
-                    a[x + 1][y + 1][z] = bit.bxor p[z], (bit.band (bit.bnot q[z]), r[z]) 
+                    state[x + 1][y + 1][z] = bit.bxor p[z], (bit.band (bit.bnot q[z]), r[z]) 
 
         --tau
-        for z = 1, #a[0][0]
-            a[0][0][z] = bit.bxor a[0][0][z], rc[z]
+        for z = 1, #state[1][1]
+            state[1][1][z] = bit.bxor state[1][1][z], rc[z]
+        
+        return state
 
     return (state) ->
         if #state != 5

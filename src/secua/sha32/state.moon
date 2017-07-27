@@ -8,8 +8,11 @@ return (path) ->
             log 'input is not 200 bytes long (1600 bits)', 1
             return nil
         result = {}
+        print 'state'
         for x = 0, 4
             result[x + 1] = {}
             for y = 0, 4
-                result[x + 1][y + 1] = [byte for byte in *bytes[(x * 8) + (y * 40) + 1, (x * 8) + (y * 40) + 8]]
+                result[x + 1][y + 1] = {}
+                for z = 1, 8
+                    result[x + 1][y + 1][z] = bytes[(x * 8) + (y * 40) + (9 - z)]
         return result

@@ -12,8 +12,8 @@ return (path) ->
                     input = input .. '0'
         
         bitLength = input\len!
-        bitend = input\sub bitLength - (distance - 1), bitLength
-        bitstart = (input\sub 1, bitLength - distance)
+        bitend = input\sub distance + 1, bitLength
+        bitstart = (input\sub 1, distance)
         output = bitend .. bitstart
 
         result = {}
