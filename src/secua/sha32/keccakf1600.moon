@@ -1,7 +1,12 @@
 return (path) ->
+    bytesToState = (require path .. '/sha32/state')(path)
+    stateToBytes = (require path .. '/sha32/stateToBytes')(path)
     rclookup = (require path .. '/sha32/rclookup')
     rlookup = (require path .. '/sha32/rlookup')
     rot = (require path .. '/sha32/byteRot')(path)
+    byteNot = (require path .. '/sha32/byteNot')(path)
+
+    dumpState = (require path .. '/sha32/dumpState')(path)
 
     log = (require path .. '/utils/errorlog')
     bit = (require path .. '/utils/bit')(path)
@@ -43,7 +48,7 @@ return (path) ->
                 q = b[((x + 1) % 5) + 1][y + 1]
                 r = b[((x + 2) % 5) + 1][y + 1]
                 for z = 1, #p
-                    state[x + 1][y + 1][z] = bit.bxor p[z], (bit.band (bit.bnot q[z]), r[z]) 
+                    state[x + 1][y + 1][z] = bit.bxor p[z], (bit.band (byteNot q[z]), r[z]) 
 
         --tau
         for z = 1, #state[1][1]
@@ -51,18 +56,10 @@ return (path) ->
         
         return state
 
-    return (state) ->
-        if #state != 5
-            log 'not enough planes to be a sponge, should be 5', 1
-            return nil
-        for plane in *state
-            if #plane != 5
-                log 'not enough lanes to be a plane, should have 5', 1
-                return nil
-            for lane in *plane
-                if #lane != 8
-                    log 'one or more lanes is not correct length', 1
-                    return nil
+    return (bytes) ->
+        state = bytesToState bytes
+        dumpState state
         for i = 0, 23
             state = round state, rclookup[i]
-        return state
+        dumpState state
+        return stateToBytes state

@@ -9,11 +9,11 @@ return (path) ->
 
         for i = 1, required
             if (i == 1) and (i == required)
-                table.insert result, 0x61
+                table.insert result, 0x86
             elseif i == 1
-                table.insert result, 0x60
+                table.insert result, 0x06
             elseif i == required
-                table.insert result, 0x01
+                table.insert result, 0x80
             else 
                 table.insert result, 0x00
         return result

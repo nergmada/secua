@@ -1,6 +1,5 @@
 return (path) ->
     log = (require path .. '/utils/errorlog')
-    reverseLane = (require path .. '/sha32/reverseLane')(path)
     return (bytes) ->
         if (not bytes) or (type bytes) != 'table'
             log 'input is not a table or non existent', 1
@@ -12,5 +11,7 @@ return (path) ->
         for x = 0, 4
             result[x + 1] = {}
             for y = 0, 4
-                result[x + 1][y + 1] = reverseLane [(bytes[(x * 8) + (y * 40) + (9 - z)]) for z = 1, 8]
+                result[x + 1][y + 1] = {}
+                for z = 1, 8
+                    result[x + 1][y + 1][z] = bytes[(x * 8) + (y * 40) + (9 - z)]
         return result
