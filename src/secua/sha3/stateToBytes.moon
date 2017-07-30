@@ -4,5 +4,6 @@ return (path) ->
         for x = 0, 4
             for y = 0, 4
                 for z = 1, 8
-                    result[(x * 8) + (y * 40) + z] = state[x + 1][y + 1][9 - z]
+                    --reverse bytes from lane
+                    result[8 * (x + (5 * y)) + z] = state[x][y][9 - z]
         return result

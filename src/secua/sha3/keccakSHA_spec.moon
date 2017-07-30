@@ -1,9 +1,14 @@
---handle = io.popen('cd')
---executePath = handle\read()
---package.path = executePath .. '\\?.lua;' .. executePath .. '\\?\\init.lua;' .. package.path
---
---secua = (require 'secua')('secua')
---
---input = secua.utils.hexBytify '76696f6c61'
---result = secua.utils.hexify (secua.sha3.keccakSHA input, 512)
---print result
+input = '83AF34279CCB5430FEBEC07A81950D30F4B66F484826AFEE7456F0071A51E1BBC55570B5CC7EC6F9309C17BF5BEFDD7C6BA6E968CF218A2B34BD5CF927AB846E38A40BBD81759E9E33381016A755F699DF35D660007B5EADF292FEEFB735207EBF70B5BD17834F7BFA0E16CB219AD4AF524AB1EA37334AA66435E5D397FC0A065C411EBBCE32C240B90476D307CE802EC82C1C49BC1BEC48C0675EC2A6C6F3ED3E5B741D13437095707C565E10D8A20B8C20468FF9514FCF31B4249CD82DCEE58C0A2AF538B291A87E3390D737191A07484A5D3F3FB8C8F15CE056E5E5F8FEBE5E1FB59D6740980AA06CA8A0C20F5712B4CDE5D032E92AB89F0AE1'
+
+describe 'Keccak SHA 33 tests', ->
+    secua = nil
+    
+    setup ->
+        secua = (require 'secua')('secua')
+    
+    before_each ->
+        --stub _G, "print"
+    it 'correctly hashes viola', ->
+        input = secua.utils.hexBytify '76696f6c61'
+        result = secua.utils.hexify (secua.sha34.sha input, 512)
+        print result
