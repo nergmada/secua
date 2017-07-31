@@ -1,6 +1,6 @@
 return (path) ->
     byteRot = (require path .. '/sha3/utils/byteRot')(path)
-    rlookup = require (path .. '/sha3/steps/rlookup')
+    rlookup = require (path .. '/sha3/keccakf1600/steps/rlookup')
     return (state) ->
         --rho and pi 
         b = {}
