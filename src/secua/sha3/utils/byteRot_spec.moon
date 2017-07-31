@@ -1,11 +1,11 @@
-describe 'Keccak SHA 33 tests', ->
+describe 'Byte Rotation Utility tests', ->
     secua = nil
     
     setup ->
         secua = (require 'secua')('secua')
     
     before_each ->
-        --stub _G, "print"
+        stub _G, "print"
     it 'correctly rotates a given byte array one bit', ->
         result = secua.sha3.utils.byteRot { 0x80, 0x01 }, 1
         assert.are.same { 0x00, 0x03 }, result
@@ -18,3 +18,11 @@ describe 'Keccak SHA 33 tests', ->
     it 'correctly rotates a given lane 18 bits', ->
         result = secua.sha3.utils.byteRot { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 }, 18
         assert.are.same { 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00 }, result
+    it 'rejects invalid byte input', ->
+        result = secua.sha3.utils.byteRot nil, 10
+        assert.is_nil result
+        assert.stub(print).was.called!
+    it 'rejects invalid rotation distance', ->
+        result = secua.sha3.utils.byteRot { 0x00, 0x01 }, nil
+        assert.is_nil result
+        assert.stub(print).was.called!
