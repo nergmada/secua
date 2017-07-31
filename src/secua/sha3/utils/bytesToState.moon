@@ -1,5 +1,9 @@
 return (path) ->
+    log = (require path .. '/utils/errorlog')
     return (bytes) ->
+        if (not bytes) or (type bytes) != 'table'
+            log 'Provided byte array is not a table or nonexistent', 1
+            return nil
         result = {}
         for x = 0, 4
             result[x] = {}
