@@ -33,6 +33,12 @@ LuaRocks package.
         - CBC
         - ECB
         - More planned
+- SHA-3 (Byte only hashing)
+    - 224 bit hash
+    - 256 bit hash
+    - 384 bit hash
+    - 512 bit hash
+    - SHAKE-128 and SHAKE-256
 - Utilities
     - Stringify - convert bytes to String
     - bytify - convert string to bytes
