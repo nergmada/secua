@@ -1,5 +1,9 @@
 return (path) ->
+    log = (require path .. '/utils/errorlog')
     return (state) ->
+        if (not state) or (type state) != 'table'
+            log 'No state provided or the provided state is not a table', 1
+            return nil
         result = {}
         for x = 0, 4
             for y = 0, 4
