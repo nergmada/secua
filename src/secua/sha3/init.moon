@@ -1,6 +1,5 @@
 return (path) ->
     return {
-        steps: (require path .. '/sha3/steps')(path)
         sponge: (require path .. '/sha3/sponge')(path)
         keccakf1600: (require path .. '/sha3/keccakf1600')(path)
         utils: (require path .. '/sha3/utils')(path)
