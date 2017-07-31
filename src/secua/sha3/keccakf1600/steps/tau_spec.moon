@@ -1,4 +1,4 @@
-describe 'Rho, Pi and Chi step tests', ->
+describe 'Tau step tests', ->
     secua = nil
     
     setup ->
@@ -7,7 +7,7 @@ describe 'Rho, Pi and Chi step tests', ->
     before_each ->
         stub _G, "print"
     
-    it 'correctly transforms a given state according to Rho Pi and Chi', ->
+    it 'correctly transforms a given state according to tau', ->
         hexBytify = secua.utils.hexBytify
         tau_input = {
             [0]: {
