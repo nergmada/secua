@@ -15,8 +15,14 @@ return (path) ->
     
     bytesToState = (require path .. '/sha3/utils/bytesToState')(path)
     stateToBytes = (require path .. '/sha3/utils/stateToBytes')(path)
-    
+    log = (require path .. '/utils/errorlog')
     return (bytes) ->
+        if (not bytes) or (type bytes) != 'table'
+            log 'No input bytes provided, or input bytes are not a table', 1
+            return nil 
+        if (#bytes != 200)
+            log 'the provided amount of bytes is not 200, therefore a 1600 bit state transform cannot happen', 1
+            return nil
         state = bytesToState bytes 
         for i = 0, 23
             round state, rclookup[i]
