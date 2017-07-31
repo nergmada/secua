@@ -1,17 +1,15 @@
 return (path) ->
-    pad = (require path .. '/sha3/pad')(path)
-    convertToBlocks = (require path .. '/sha3/convertToBlocks')(path)
+    pad = (require path .. '/sha3/sponge/pad')(path)
+    convertToBlocks = (require path .. '/sha3/sponge/convertToBlocks')(path)
     keccakf1600 = (require path .. '/sha3/keccakf1600')(path)
 
     bit = (require path .. '/utils/bit')(path)
-    dumpBytes = (require path .. '/sha3/dumpBytes')(path)
 
-    return (message, digestLength) ->
-        capacity = 2 * digestLength
+    return (message, capacity, suffix, output) ->
         rate = 1600 - capacity
         byteRate, byteCapacity = rate / 8, capacity / 8
 
-        paddedmessage = pad message, byteRate
+        paddedmessage = pad message, byteRate, suffix
 
         blocks = convertToBlocks paddedmessage, byteRate
 
@@ -25,9 +23,9 @@ return (path) ->
         --change 1: truncate from the right
         z = [byte for byte in *state[1, byteRate]]
         
-        while not (#z >= (digestLength / 8))
+        while not (#z >= (output / 8))
             state = keccakf1600 state
             for i = 1, byteRate
                 table.insert z, state[i]
         
-        return [byte for byte in *z[1, digestLength/8]]
+        return [byte for byte in *z[1, output / 8]]

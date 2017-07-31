@@ -9,6 +9,6 @@ describe 'Keccak SHA 33 tests', ->
     before_each ->
         --stub _G, "print"
     it 'correctly hashes viola', ->
-        input = secua.utils.hexBytify '76696f6c61'
-        result = secua.utils.hexify (secua.sha34.sha input, 512)
+        input = secua.utils.bytify 'viola'
+        result = secua.utils.hexify (secua.sha3.sponge input, 512, 0x06, 256)
         print result
