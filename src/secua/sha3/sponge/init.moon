@@ -16,8 +16,8 @@ return (path) ->
         if (type capacity) != 'number' or (type suffix) != 'number' or (type output) != 'number'
             log 'Either capacity, suffix or output provided is not a number', 1
             return nil
-        if (capacity % 8 != 0) or (rate % 8 != 0)
-            log 'provided capacity or rate is not a multiple of 8', 1
+        if (capacity % 8 != 0)
+            log 'provided capacity is not a multiple of 8', 1
             return nil
         if (suffix != 0x06) and (suffix != 0x1f)
             log 'Just to let you know, the suffix provided does not match a SHAKE or SHA3 suffix', 2

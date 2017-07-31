@@ -8,4 +8,6 @@ return (path) ->
         sha256: (require path .. '/sha3/sha256')(path)
         sha384: (require path .. '/sha3/sha384')(path)
         sha512: (require path .. '/sha3/sha512')(path)
+        shake128: (require path .. '/sha3/shake128')(path)
+        shake256: (require path .. '/sha3/shake256')(path)
     }

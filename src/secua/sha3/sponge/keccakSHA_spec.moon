@@ -1,5 +1,4 @@
-
-describe 'Keccak SHA 33 tests', ->
+describe 'Keccak Sponge tests', ->
     secua = nil
     
     setup ->
