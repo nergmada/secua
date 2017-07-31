@@ -3,7 +3,7 @@ return (path) ->
     decrypt = (require path .. '/aes/decrypt')(path)
     
     log = require path .. '/utils/errorlog'
-    bit = (require path .. '/utils/bit')
+    bit = (require path .. '/utils/bit')(path)
     pcks7 = (require path .. '/utils/padding/pcks7')(path)
 
     return (data, key, iv) ->

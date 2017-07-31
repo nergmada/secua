@@ -1,5 +1,5 @@
 return (path) ->
-    bit = require path .. '/utils/bit'
+    bit = (require path .. '/utils/bit')(path)
     log = require path .. '/utils/errorlog'
     return (state, subkey) ->
         if (not state) or (not subkey) or (type state) != 'table' or (type subkey) != 'table'
