@@ -3,6 +3,8 @@ return (path) ->
     return (lane, distance) ->
         if (not lane) or (not distance) or (type lane) != 'table' or (type distance) != 'number'
             log 'provided lane or rotation distance not valid or nonexistent', 1
+            print lane
+            print distance
             return nil
         
         distance = distance % (#lane * 8)
